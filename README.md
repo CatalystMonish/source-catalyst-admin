@@ -1,4 +1,4 @@
-# Source Catalyst Client App
+# Source Catalyst Admin App
 
 ## 🌐 Website
 
