@@ -1,29 +1,29 @@
-## FireCMS starter template
+# Source Catalyst Client App
 
-Welcome to FireCMS!
+## 🌐 Website
 
-This is a starter template for your next project. It includes the basic
-configuration to get you started.
+[Source Catalyst](https://www.thesourcecatalyst.in)
 
-In order to run this project, you will need to create a Firebase project,
-create a web app and copy the configuration to the `firebase-config.ts`.
+## 📜 About this app
 
-Then simply run:
+Students often face barriers and a lack of opportunity when trying to find hands-on experience in their field of choice. The Source Catalyst application offers a simple and cost-effective solution: **student internships**.
 
-### Running the project
+With this platform, students can:
+- Gain the skills they need to succeed in the workplace.
+- Make connections for future careers.
+- Build their resumes.
 
-```bash
-yarn dev
-```
+The traditional internship model often lacks structure, support, and guidance. Recognizing this, we've created an application that enables students to:
 
-### Building the project
+- Learn and grow through their internships.
+- Keep track of their projects and internships.
+- Freely access all the study material required to complete their internship.
+- Contact their mentors for special guidance whenever needed.
 
-Make sure you update your `package.json` `build` script with the correct 
-project name. Then run:
+Our user-friendly approach ensures that the internship experience is smooth and hassle-free. Moreover, upon the completion of the internship, students are rewarded with a certificate and a letter of recommendation, bolstering their professional profile.
 
-```bash
-yarn build
-```
+## 🔗 Quick Links
 
-> Note: this may not work if you have set up your Firebase hosting with 
-> a custom config.
+- [Internship Listings](https://www.thesourcecatalyst.in/internships)
+- [Study Material](https://www.thesourcecatalyst.in/study-material)
+- [Contact Us](https://www.thesourcecatalyst.in/contact)
