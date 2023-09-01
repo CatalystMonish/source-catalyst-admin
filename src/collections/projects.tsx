@@ -1,54 +1,72 @@
 import { buildCollection, buildProperty, EntityReference } from "firecms";
 
 export type Project = {
-    projectID: string;
     projectTitle: string;
     projectDescription: string;
-    projectThumbnailURL: string;
+    projectThumbnail: string;
+    projectAuthor: string;
+    projectRating: number;
     projectTime: number;
+    projectPostedTime: number;
     projectDifficulty: string;
-    projectTasks: EntityReference[];
+    projectCategory: string;
+    skills: EntityReference[];
+    projectType: number[];
 }
 
-export type Task = {
-    taskID: string;
-    taskTitle: string;
-    taskContent: string;
-    taskDuration: number;
+
+export type ProjectTask = {
     taskNumber: number;
+    taskTitle: string;
+    taskPreText: string;
+    taskPostText: string;
+    taskCode?: string;  // optional
+    taskDocumentLink?: string;  // optional
+    taskVideoLink?: string;  // optional
 }
-
-export const projectTasksSubcollection = buildCollection<Task>({
-    name: "Tasks",
-    singularName: "Task",
+export const projectTasksSubcollection = buildCollection<ProjectTask>({
+    name: "Project Tasks",
+    singularName: "Project Task",
     path: "tasks",
-    group: "Projects",
     properties: {
-        taskID: {
-            name: "Task ID",
-            validation: { required: true },
-            dataType: "string",
-        },
-        taskTitle: {
-            name: "Task Title",
-            validation: { required: true },
-            dataType: "string",
-        },
-        taskContent: {
-            name: "Task Content",
-            validation: { required: true },
-            dataType: "string",
-        },
-        taskDuration: {
-            name: "Task Duration",
-            dataType: "number",
-        },
         taskNumber: {
             name: "Task Number",
             dataType: "number",
+            validation: { required: true }
+        },
+        taskTitle: {
+            name: "Task Title",
+            dataType: "string",
+            validation: { required: true }
+        },
+        taskPreText: {
+            name: "Task Pre Text",
+            dataType: "string",
+            validation: { required: true },
+            multiline: true
+        },
+        taskPostText: {
+            name: "Task Post Text",
+            dataType: "string",
+            validation: { required: true },
+            multiline: true
+        },
+        taskCode: {
+            name: "Task Code",
+            dataType: "string",
+            multiline: true
+        },
+        taskDocumentLink: {
+            name: "Task Document Link",
+            dataType: "string"
+        },
+        taskVideoLink: {
+            name: "Task Video Link",
+            dataType: "string"
         }
     }
 });
+
 
 export const projectsCollection = buildCollection<Project>({
     name: "Projects",
@@ -62,36 +80,41 @@ export const projectsCollection = buildCollection<Project>({
         create: true,
         delete: true
     }),
-    subcollections: [
-        projectTasksSubcollection
-    ],
     properties: {
-        projectID: {
-            name: "Project ID",
-            dataType: "string",
-            autoValue: "AUTOGENERATE_UID",
-        },
+
         projectTitle: {
             name: "Project Title",
-            validation: { required: true },
+            validation: { required: true},
             dataType: "string",
         },
         projectDescription: {
             name: "Project Description",
-            validation: { required: true },
+            validation: { required: true},
             dataType: "string",
             multiline: true
         },
-        projectThumbnailURL: buildProperty({
-            name: "Thumbnail URL",
+        projectThumbnail: buildProperty({
+            name: "Project Thumbnail",
             dataType: "string",
             storage: {
                 storagePath: "projects/thumbnails",
                 acceptedFiles: ["image/*"],
             }
         }),
+        projectAuthor: {
+            name: "Author",
+            dataType: "string",
+        },
+        projectRating: {
+            name: "Project Rating",
+            dataType: "number",
+        },
         projectTime: {
             name: "Project Time",
+            dataType: "number",
+        },
+        projectPostedTime: {
+            name: "Posted Time",
             dataType: "number",
         },
         projectDifficulty: {
@@ -103,13 +126,37 @@ export const projectsCollection = buildCollection<Project>({
                 hard: "Hard",
             }
         },
-        projectTasks: {
+        projectCategory: {
+            name: "Project Category",
+            dataType: "string",
+            enumValues: {
+                python: "Python",
+                android: "Android",
+                web: "Web Development",
+                iot: "IOT",
+                industrial: "Industrial Automation"
+            }
+        },
+        skills: {
+            name: "Skills",
             dataType: "array",
-            name: "Project Tasks",
             of: {
                 dataType: "reference",
-                path: "tasks"
+                path: "skills"
             }
+        },
+        projectType: {
+            name: "Project Type",
+            dataType: "array",
+            of: {
+                dataType: "number" // Change to "number"
+            },
+            validation: { required: true }
         }
-    }
-});
+        
+    },subcollections: [
+        projectTasksSubcollection
+    ]
+    
+}
+);
