@@ -12,7 +12,7 @@ export const postsCollection = buildCollection<Post>({
     singularName: "Post",
     path: "posts", // this is the path where the collection will be stored in Firestore
     icon: "Article",
-    group: "Data",
+    group: "Datas",
     properties: {
         likes: {
             name: "Likes",
